@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="icon" type="image/x-icon" >
+
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        
+        <!-- Add icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+        <link href="css/main.css" rel="stylesheet">
+
+        <title>Covid App</title>
+
+        <!-- development version, includes helpful console warnings -->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    </head>
+    <body>
+
+        <div id="app">
+            <!-- Header menu
+            <component-header-menu></component-header-menu>-->
+            <nav class="navbar navbar-light bg-light">
+                <div class="container">
+                    <a class="navbar-brand" href="#">
+                        <img :src="srcLogo" width="30" height="30" class="d-inline-block align-top" alt="">
+                        Covid App
+                    </a>
+                </div>
+            </nav>
+
+            <!-- Stadicts -->
+            <div class="container my-5">
+
+                <div class="jumbotron jumbotron-fluid">
+                    <h1 class="display-4">Datos Covid-19</h1>
+                    <p class="lead pt-2">Web que recopila información de casos actuales y globales sobre COVID-19.</p>
+                </div>
+
+                <!-- Spain Stadicts -->
+                <div class="row mt-5">
+                    <strong>España</strong>
+                    <hr class="my-4">
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="card card-noborder" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Casos</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ dataCovid.spain.cases }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="card card-noborder" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Activos</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ dataCovid.spain.active }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="card card-noborder" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Críticos</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ dataCovid.spain.critical }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="card card-noborder" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Casos hoy</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ dataCovid.spain.todayCases }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="card card-noborder" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Muertes</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ dataCovid.spain.deaths }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="card card-noborder" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Muertes hoy</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ dataCovid.spain.todayDeaths }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+                <!-- Wold Stadicts -->
+                <div class="row mt-5">
+                    <strong>Datos mundiales</strong>
+                    <hr class="my-4">
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="card card-noborder" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Casos</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ dataCovid.globalData.cases }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="card card-noborder" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Activos</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ dataCovid.globalData.active }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="card card-noborder" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Críticos</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ dataCovid.globalData.critical }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="card card-noborder" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Casos hoy</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ dataCovid.globalData.todayCases }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="card card-noborder" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Muertes</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ dataCovid.globalData.deaths }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="card card-noborder" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Muertes hoy</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{ dataCovid.globalData.todayDeaths }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="card" style="width: 26rem;">
+                            <div class="card-body">
+                                <canvas id="chLineGlobal"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card" style="width: 26rem;">
+                            <div class="card-body">
+                                <canvas id="chLineGlobal2"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="card" style="width: 26rem;">
+                            <div class="card-body">
+                                <canvas id="chLineGlobal3"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-5">
+                    <div class="col-sm-6">
+                        <div class="card mx-5">
+                            <div class="card-body">
+                                <canvas id="dataChBarGlobal" width="200" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card mx-5">
+                            <div class="card-body">
+                                <canvas id="chDonutGlobal"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <p>Datos recopilados de {{ this.dataCovid.globalData.countries }} paises.</p>
+                </div>
+                
+                <hr class="my-4">
+
+<!--
+                
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <canvas id="chLineGlobal"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <canvas id="chLineGlobal"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <canvas id="dataChBarGlobal" width="200" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <canvas id="chDonutGlobal"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+-->
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">País</th>
+                            <th scope="col">Casos</th>
+                            <th scope="col">Activos</th>
+                            <th scope="col">Críticos</th>
+                            <th scope="col">Casos hoy</th>
+                            <th scope="col">Muertes</th>
+                            <th scope="col">Muertes hoy</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template v-for="country in dataCovid.data">
+                            <tr>
+                                <th scope="row"><img :src="country.countryInfo.flag" width="20" height="20" class="rounded float-left" :alt="country.countryInfo.iso3"></th>
+                                <td>{{country.country}}</td>
+                                <td>{{country.cases}}</td>
+                                <td>{{country.active}}</td>
+                                <td>{{country.critical}}</td>
+                                <td>{{country.todayCases}}</td>
+                                <td>{{country.deaths}}</td>
+                                <td>{{country.todayDeaths}}</td>
+                                <td>
+                                <!--
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                                        <i class="fas fa-chart-line"></i>
+                                    </button>
+                                    <b-button v-b-modal.modal-1>Launch demo modal</b-button>
+                                -->
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+        <!--
+        <div>
+            <b-button v-b-modal.modal-1>Launch demo modal</b-button>
+          
+            <b-modal id="modal-1" title="BootstrapVue">
+              <p class="my-4">Hello from modal!</p>
+            </b-modal>
+          </div>
+        -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- External scripts -->
+        <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+
+        <!-- Core plugin JavaScript 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script> -->
+        
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+        <script src="https://unpkg.com/@popperjs/core@2"></script>
+
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        
+        <!-- Scripts -->
+        <script src="js/vue.js"></script>
+
+
+
+<script>
+    /* Chart line 1 */
+    var dataChLineGlobal = {
+                        labels: ["E", "F", "M", "A", "My", "J", "Jl","Ag", "S", "O", "N", "D"],
+                        datasets: [{
+                                        label: ["Casos"],
+                                        data: [589, 445, 483, 503, 689, 692, 634, 560, 613, 523, 599, 670],
+                                        backgroundColor: ['rgb(255, 99, 132)'],
+                                        borderColor: ['rgba(255, 99, 132, 1)'],
+                                        borderWidth: 2
+                                    },
+                                    {
+                                        label: ["Muertes"],
+                                        data: [639, 465, 493, 478, 589, 632, 674],
+                                    }]
+    };
+
+    var chLineGlobal = document.getElementById("chLineGlobal");
+    if (chLineGlobal) {
+        new Chart(chLineGlobal, {
+                            type: 'line',
+                            data: dataChLineGlobal,
+                            options: {
+                                        scales: {
+                                                    yAxes: [{
+                                                                ticks: { beginAtZero: false }
+                                                            }]
+                                        },
+                                        legend: {
+                                            display: false
+                                        }
+                                    }
+                        }
+        );
+    }
+
+    /* Chart line 2 */
+    var dataChLineGlobal2 = {
+                        labels: ["E", "F", "M", "A", "My", "J", "Jl","Ag", "S", "O", "N", "D"],
+                        datasets: [{
+                                        label: ["Activos"],
+                                        data: [589, 445, 483, 503, 689, 692, 634, 560, 613, 523, 599, 670],
+                                        backgroundColor: ['rgb(255, 99, 132)'],
+                                        borderColor: ['rgba(255, 99, 132, 1)'],
+                                        borderWidth: 2
+                                    },
+                                    {
+                                        label: ["Críticos"],
+                                        data: [639, 465, 493, 478, 589, 632, 674],
+                                    }]
+    };
+
+    var chLineGlobal2 = document.getElementById("chLineGlobal2");
+    if (chLineGlobal2) {
+        new Chart(chLineGlobal2, {
+                            type: 'line',
+                            data: dataChLineGlobal2,
+                            options: {
+                                        scales: {
+                                                    yAxes: [{
+                                                                ticks: { beginAtZero: false }
+                                                            }]
+                                        },
+                                        legend: {
+                                            display: false
+                                        }
+                                    }
+                        }
+        );
+    }
+
+    /* Chart line 3 */
+    var dataChLineGlobal3 = {
+                        labels: ["E", "F", "M", "A", "My", "J", "Jl","Ag", "S", "O", "N", "D"],
+                        datasets: [{
+                                        label: ["Casos"],
+                                        data: [589, 445, 483, 503, 689, 692, 634, 560, 613, 523, 599, 670],
+                                        backgroundColor: ['rgb(255, 99, 132)'],
+                                        borderColor: ['rgba(255, 99, 132, 1)'],
+                                        borderWidth: 2
+                                    },
+                                    {
+                                        label: ["Recuperados"],
+                                        data: [639, 465, 493, 478, 589, 632, 674],
+                                    }]
+    };
+
+    var chLineGlobal3 = document.getElementById("chLineGlobal3");
+    if (chLineGlobal3) {
+        new Chart(chLineGlobal3, {
+                            type: 'line',
+                            data: dataChLineGlobal3,
+                            options: {
+                                        scales: {
+                                                    yAxes: [{
+                                                                ticks: { beginAtZero: false }
+                                                            }]
+                                        },
+                                        legend: {
+                                            display: false
+                                        }
+                                    }
+                        }
+        );
+    }
+
+    /* Chart donut */
+    var dataChDonutGlobal = {
+                        labels: ["Red", "Blue", "Yellow", "Gree"],
+                        datasets: [{
+                                        label: 'My First Dataset',
+                                        data: [300, 50, 100, 170],
+                                        backgroundColor: [
+                                                            'rgb(255, 99, 132)',
+                                                            'rgb(54, 162, 235)',
+                                                            'rgb(255, 205, 86)',
+                                                            'rgb(155, 35, 126)'],
+                                        hoverOffset: 4
+                        }]
+    };
+
+    var chDonutGlobal = document.getElementById("chDonutGlobal");
+    if (chDonutGlobal) {
+        new Chart(chDonutGlobal, {
+                            type: 'doughnut',
+                            data: dataChDonutGlobal,
+                            options: {
+                                        legend: {
+                                            display: false
+                                        }
+                                    }
+                        }
+        );
+    }
+
+    /* Chart bar */
+    var dataChBarGlobal = {
+                                labels: ['Enero', 'Marzo', 'Mayo', 'Julio', 'Septiembre', 'Noviembre'],
+                                datasets: [{
+                                    label: '# Infectados',
+                                    data: [12, 19, 3, 5, 2, 3],
+                                    backgroundColor: [
+                                        'rgba(255, 99, 132, 0.2)',
+                                        'rgba(54, 162, 235, 0.2)',
+                                        'rgba(255, 206, 86, 0.2)',
+                                        'rgba(75, 192, 192, 0.2)',
+                                        'rgba(153, 102, 255, 0.2)',
+                                        'rgba(255, 159, 64, 0.2)'
+                                    ],
+                                    borderColor: [
+                                        'rgba(255, 99, 132, 1)',
+                                        'rgba(54, 162, 235, 1)',
+                                        'rgba(255, 206, 86, 1)',
+                                        'rgba(75, 192, 192, 1)',
+                                        'rgba(153, 102, 255, 1)',
+                                        'rgba(255, 159, 64, 1)'
+                                    ],
+                                    borderWidth: 1
+                                }]
+    };
+
+    var chBarGlobal = document.getElementById("dataChBarGlobal");
+    if (chBarGlobal) {
+        new Chart(chBarGlobal, {
+                            type: 'bar',
+                            data: dataChBarGlobal,
+                            options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
+                                        }
+                                    }
+        });
+    }
+
+
+
+/*  
+    const dataDoughnut = {
+                    labels: [
+                        'Red',
+                        'Blue',
+                        'Yellow'
+                    ],
+                    datasets: [{
+                        label: 'My First Dataset',
+                        data: [300, 50, 100],
+                        backgroundColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(54, 162, 235)',
+                        'rgb(255, 205, 86)'
+                        ],
+                        hoverOffset: 4
+                    }]
+    };
+
+    var chDonut = document.getElementById("chDonut");
+    const configDoughnut = {
+        type: 'doughnut',
+        data: dataDoughnut,
+    };
+    if (chDonut) {
+        new Chart(chLine, {
+            configDoughnut
+                        }
+        );
+    }
+*/
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+    </body> 
+</html>
